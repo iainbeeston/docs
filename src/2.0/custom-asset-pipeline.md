@@ -8,6 +8,17 @@ Because there isn't just one standardized way of handling assets in Rails we too
 
 To do that you have eject the `_head.html.erb` partial (`bin/rails generate avo:eject :head`), create the asset files (examples below) and add the asset files from your pipeline to the `_head` partial.
 
+## Importmap
+
+Create `avo_application.js` and `avo_application.css` inside `app/javascript` and `app/assets/stylesheets`. Import any files that you'd like to use, and pin `avo_application.js` inside `config/importmap.rb` (as well as any other javascript files that will only be used inside avo).
+Then add them to Avo using the `_head.html.erb` partial.
+
+```erb
+# app/views/avo/partials/_head.html.erb
+<%= javascript_importmap_tags "avo_application" %>
+<%= stylesheet_link_tag 'avo_application', media: 'all' %>
+```
+
 ## Webpacker
 
 *Instructions below are for Webpacker version 6. Version 5 has different paths (`app/javacript/packs`).*
